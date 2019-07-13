@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<form class="form-horizontal" method="post" action="/Home/Create">
+        <div class="form-group">
+            <label class="control-label col-sm-2">Name:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="name" placeholder="Enter Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">Description:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" name="desc" placeholder="Enter description">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>*@
+
+
+@* 1st arg action, 2nd controller, 3rd method, 4th any html attribute to use it u have to use syntax new {attribute}
+    nor for body use html helpers
+*@
+@using (Html.BeginForm("Create", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+
+    <div class="form-group">
+        @Html.Label("Name:", new { @class = "control-label col-sm-2" })
+        <div class="col-sm-4">
+            @Html.TextBox("name", null, new { @class = "form-control", @placeholder = "Enter Name" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("Description:", new { @class = "control-label col-sm-2" })
+        <div class="col-sm-4">
+            @Html.TextBox("description", null, new { @class = "form-control", @placeholder = "Enter Description" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+}
