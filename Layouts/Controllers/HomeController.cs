@@ -54,8 +54,10 @@ namespace Layouts.Controllers
         [HttpPost]
         public ActionResult Create(string name, string description)
         {
-            //controller to view
-            //view to controller
+            //view to controller, currently we're using args but later we'll see better way
+            //controller to view, 3 ways ViewBag, ViewData, TempData
+            ViewBag.Name = name;
+            ViewBag.Desc = description;
             return View();
         }
     }
