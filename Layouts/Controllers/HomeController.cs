@@ -52,13 +52,39 @@ namespace Layouts.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(string name, string description)
+        public ActionResult Create(tbl_Category category)
         {
             //view to controller, currently we're using args but later we'll see better way
             //controller to view, 3 ways ViewBag, ViewData, TempData
-            ViewBag.Name = name;
-            ViewBag.Desc = description;
+            //ViewBag.Name = name;
+            //ViewBag.Desc = description;
+            WebAppDbContext db = new WebAppDbContext();
+            db.tbl_Category.Add(category);
+            db.SaveChanges();
             return View();
+        }
+        [HttpGet]
+        public ActionResult List()
+        {
+            WebAppDbContext db = new WebAppDbContext();
+            var list = db.tbl_Category.ToList();
+            
+            return View(list);
+        }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            WebAppDbContext db = new WebAppDbContext();
+            var category = db.tbl_Category.Find(id);
+            return View(category);
+        }
+        [HttpPost]
+        public ActionResult Edit(tbl_Category category)
+        {
+            WebAppDbContext db = new WebAppDbContext();
+            db.Entry(category).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("List");
         }
     }
 }
