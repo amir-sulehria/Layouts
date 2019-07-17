@@ -5,6 +5,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script>
+    function confirmDel() {
+        return confirm('Are you sure?');
+    }
+</script>
+
 <table class="table table-bordered table-striped">
     <tr>
         <th>Name</th>
@@ -16,7 +22,11 @@
         <tr>
             <td>@item.Name</td>
             <td>@item.Description</td>
-            <td>@Html.ActionLink("Edit", "Edit", "Home", new { Id = item.Id }, htmlAttributes: new { @class= "btn btn-primary" })</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", "Home", new { Id = item.Id }, htmlAttributes: new { @class= "btn btn-primary" })
+                @*only implement below functionality if onClick return true*@
+                @Html.ActionLink("Delete", "Delete", "Home", new { Id = item.Id }, htmlAttributes: new { @class= "btn btn-danger", onclick= "return confirmDel()"})
+            </td>
         </tr>
     }
 </table>

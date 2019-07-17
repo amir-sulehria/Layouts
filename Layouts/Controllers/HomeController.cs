@@ -86,5 +86,15 @@ namespace Layouts.Controllers
             db.SaveChanges();
             return RedirectToAction("List");
         }
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            WebAppDbContext db = new WebAppDbContext();
+            var category = db.tbl_Category.Find(id);
+            db.tbl_Category.Remove(category);
+            db.SaveChanges();
+            return RedirectToAction("List");
+        }
+
     }
 }
